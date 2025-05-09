@@ -25,10 +25,22 @@ public class Store extends BaseEntity {
     @Column(nullable = false, length = 40)
     private String name;
 
+    private Float score;
+
+    private String region;
+
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Review> storeReviewList = new ArrayList<>();
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Mission> storeMissionList = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", score=" + score +'}';
+    }
 
 }

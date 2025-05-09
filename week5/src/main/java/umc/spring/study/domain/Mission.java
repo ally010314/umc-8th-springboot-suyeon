@@ -5,7 +5,9 @@ import lombok.*;
 import umc.spring.study.domain.common.BaseEntity;
 import umc.spring.study.domain.mapping.MemberMission;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -24,6 +26,8 @@ public class Mission extends BaseEntity {
     private Store store;
 
     private String content;
+
+    private LocalDateTime deadline;
 
     private Float point;
 
