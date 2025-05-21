@@ -48,40 +48,6 @@ public class Application {
 			//여기서부터 실습
 
 
-			Long baseMissionId = 3L;
-			String region = "대현동";
-			int limit = 15;
-
-			missionService.findRunningMissions(baseMissionId, limit)
-					.forEach(mission -> System.out.println("Running Mission ID: " + mission.getId() + ", Content: " + mission.getContent()));
-
-			missionService.findFinishedMissions(baseMissionId, limit)
-					.forEach(mission -> System.out.println("Finished Mission ID: " + mission.getId() + ", Content: " + mission.getContent()));
-
-			missionService.findAvailableMissionsByRegion(region, baseMissionId, limit)
-					.forEach(availableMission -> System.out.println("Available Mission ID: " + availableMission.getId() + ", Content: " + availableMission.getContent()));
-
-			MypageQuerySerivce  myPageService = context.getBean(MypageQuerySerivce.class);
-			Long baseMemberId = 3L;
-			myPageService.selectMyInfo(baseMemberId).forEach(member->System.out.println("Member ID: " + member.getId() + ", Member name: " + member.getName()));
-
-			Member member = memberService.findMember(baseMemberId)
-					.orElseThrow(() -> new RuntimeException("Member not found"));
-
-			Store store = storeService.findStore(1L)
-					.orElseThrow(() -> new IllegalArgumentException("Store not found"));
-
-			Review newReview = Review.builder()
-					.member(member)
-					.store(store)
-					.title("제목")
-					.body("맛있었음")
-					.score(5.0F)
-					.build();
-
-			reviewService.createReview(newReview);
-			System.out.println("리뷰 저장 완료: " + newReview.getBody());
-
 
 		};
 	}
