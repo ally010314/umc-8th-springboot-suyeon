@@ -1,5 +1,6 @@
 package umc.spring.study.converter;
 
+import org.springframework.data.domain.Page;
 import umc.spring.study.domain.Member;
 import umc.spring.study.domain.Mission;
 import umc.spring.study.domain.Store;
@@ -9,6 +10,8 @@ import umc.spring.study.web.dto.MissionRequestDTO;
 import umc.spring.study.web.dto.MissionResponseDTO;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MissionConverter {
 
@@ -46,5 +49,28 @@ public class MissionConverter {
                 .status(MissionStatus.RUNNING)
                 .build();
     }
+
+    public static MissionResponseDTO.RunningMissionDTO toRunningMissionDTO(MemberMission memberMission) {
+        return MissionResponseDTO.RunningMissionDTO.builder()
+                .missionId(memberMission.getMission().getId())
+                .startedAt(memberMission.getCreatedAt())
+                .build();
+    }
+
+    public static MissionResponseDTO.RunningMissionListDTO toRunningMissionListDTO(Page<MemberMission> memberMissions) {
+        List<MissionResponseDTO.RunningMissionDTO> runningMissionDTOList = memberMissions.stream()
+                .map(MissionConverter::toRunningMissionDTO)
+                .collect(Collectors.toList());
+
+        return MissionResponseDTO.RunningMissionListDTO.builder()
+                .runningMissions(runningMissionDTOList)
+                .listSize(runningMissionDTOList.size())
+                .totalPage(memberMissions.getTotalPages())
+                .totalElements(memberMissions.getTotalElements())
+                .isFirst(memberMissions.isFirst())
+                .isLast(memberMissions.isLast())
+                .build();
+    }
+
 
 }
