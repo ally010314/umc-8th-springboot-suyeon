@@ -34,8 +34,9 @@ public enum ErrorStatus implements BaseErrorCode {
     MISSION_STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "MISSION4001", "미션을 추가할 가게를 찾을 수 없습니다."),
 
     //이미 도전 중인 미션
-    MISSION_ALREADY_RUNNING(HttpStatus.CONFLICT,"MEMBER_MISSION4001","이미 진행중인 미션입니다.");
-
+    MISSION_ALREADY_RUNNING(HttpStatus.CONFLICT,"MEMBER_MISSION4001","이미 진행중인 미션입니다."),
+    INVALID_TOKEN(HttpStatus.BAD_REQUEST,"MEMBER4003","유효하지 않은 토큰입니다."),
+    INVALID_PASSWORD(HttpStatus.BAD_REQUEST,"MEMBER4004","비밀번호가 틀렸습니다.");
 
 
     private final HttpStatus httpStatus;
