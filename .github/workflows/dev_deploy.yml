@@ -19,7 +19,7 @@ jobs:
 
       - name: Make application.yml  # application.yml 파일 생성
         run: |
-          cd ./src/main/resources
+          cd ./week5/src/main/resources
           echo "${{ secrets.EC2_HOST }}" > ./application.yml
         shell: bash
 
